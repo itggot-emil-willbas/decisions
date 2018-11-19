@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     vuexArray:[1,2,3],
     numberOfTabs:3,
-    activeTab:'',
+    activeTab:2,
     tabs:[
       {
         values:
@@ -32,6 +32,25 @@ export default new Vuex.Store({
             text:'Tredje',
             value:75
           }
+      }
+    ],
+    numberOfparams:4,
+    params:[
+      {
+        text:'Pris',
+        values:[25,50,75]
+      },
+      {
+        text:'Hästkrafter',
+        values:[25,50,75]
+      },
+      {
+        text:'Skatt',
+        values:[25,50,75]
+      },
+      {
+        text:'"Oh, yeah"-faktor',
+        values:[25,50,75]
       }
     ]
   },
