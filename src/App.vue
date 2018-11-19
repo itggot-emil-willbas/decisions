@@ -18,7 +18,7 @@
   color: #2c3e50;
   margin:auto;
   max-width: 50vw;
-  height: 100vh;
+  min-height: 100vh;
   display:flex;
   flex-direction:column;
 }

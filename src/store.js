@@ -14,7 +14,6 @@ export default new Vuex.Store({
           {
             id:0,
             text:'Första',
-            value:50
           }
       },
       {
@@ -22,7 +21,6 @@ export default new Vuex.Store({
           {
             id:1,
             text:'Andra',
-            value:25
           }
       },
       {
@@ -30,7 +28,6 @@ export default new Vuex.Store({
           {
             id:2,
             text:'Tredje',
-            value:75
           }
       }
     ],

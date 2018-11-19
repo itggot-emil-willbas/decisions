@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <nav id="nav-tabs">
-      <a href="#">+</a>
+      <a id="new-tab" href="#" @click="newTab">+</a>
       <a 
         v-for="(tab,index) in tabs" 
         v-bind:key="tab.id" 
@@ -9,7 +9,7 @@
         @click="changeActiveTab"
         v-bind:id="('tab' + index)"
         >{{tab.values.text}}</a>
-      <a href="#">SUM</a>
+      <a id="sum-tab" href="#">SUM</a>
     </nav>
     <main-component/>
   </div>
@@ -35,7 +35,18 @@ export default {
         element.classList.remove('active')
       });
       e.target.classList.add('active')
-
+    },
+    newTab(){
+      let word = prompt('Please enter tab name');
+      let nextObjektNumber = (store.state.tabs.length + 1)
+      let newObj = {
+        values:
+          {
+            id:nextObjektNumber,
+            text:word
+          }
+      }
+      store.state.tabs.push(newObj)
     }
   },
   computed: {
@@ -62,6 +73,7 @@ export default {
 nav#nav-tabs {
   height:100px;
   display: flex;
+  flex-direction: row-reverse;
     a {
       display:block;
       flex:1;
@@ -78,10 +90,13 @@ nav#nav-tabs {
     a.active {
       background-color:lightgreen;
     }
+    a#new-tab{
+      order:1000;
+    }
+    a#sum-tab{
+      order:-1;
+    }
 }
-main {
-  height: 80vh;
-  background-color:lightgray;
-}
+
 </style>
 
