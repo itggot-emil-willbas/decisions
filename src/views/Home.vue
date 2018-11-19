@@ -69,9 +69,17 @@ export default {
   background:rgba($color: #e9e9e9, $alpha: 1.0);
   display:flex;
   flex-direction:column;
+  
 }
+
+
 nav#nav-tabs {
+  position:fixed;
+  top:0;
+  left:24.6vw;
+  width:50vw;
   height:100px;
+  background:white;
   display: flex;
   flex-direction: row-reverse;
     a {
@@ -81,7 +89,7 @@ nav#nav-tabs {
       display:flex;
       justify-content: center;
       align-items:center;
-      margin: 0px 5px;
+      margin:0px 15px 0px 0px;
       border-left:$border;
       border-top:$border;
       border-right:$border;

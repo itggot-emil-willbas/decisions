@@ -22,6 +22,9 @@
   display:flex;
   flex-direction:column;
 }
+body{
+  margin:0;
+}
 #nav {
   padding: 30px;
   a {

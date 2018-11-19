@@ -71,6 +71,7 @@ export default {
 @import '@/css/variables.scss';
 
 main {
+  margin-top: 100px;
   min-height: 80vh;
   background-color:darkgray;
   display: flex;
