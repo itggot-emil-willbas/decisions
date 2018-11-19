@@ -1,10 +1,11 @@
 <template>
   <div id="app">
+    <router-view/>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    
   </div>
 </template>
 
@@ -15,6 +16,11 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin:auto;
+  max-width: 50vw;
+  height: 100vh;
+  display:flex;
+  flex-direction:column;
 }
 #nav {
   padding: 30px;
@@ -25,5 +31,7 @@
       color: #42b983;
     }
   }
+  height: 10vh;
+  background-color: rgba($color: #8bfbb6, $alpha: 1.0)
 }
 </style>
