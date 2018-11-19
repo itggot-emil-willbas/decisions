@@ -2,7 +2,7 @@
   <div class="home">
     <nav id="nav-tabs">
       <a href="#">+</a>
-      <a v-for="number in array" v-bind:key="number.id" href="#">Tab {{number}}</a>
+      <a v-for="tab in tabs" v-bind:key="tab.id" href="#">{{tab.values.text}}</a>
       <a href="#">SUM</a>
     </nav>
     <main></main>
@@ -11,16 +11,18 @@
 
 <script>
 // @ is an alias to /src
-
+import store from '@/store.js'
 
 export default {
   name: 'home',
   components: {
-    
   },
-  data () {
-    return {
-      array:[1,2,3,4,5,6]
+  computed: {
+    vuexArray () {
+      return store.state.vuexArray;
+    },
+    tabs () {
+      return store.state.tabs;
     }
   }
 }
