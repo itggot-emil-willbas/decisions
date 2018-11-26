@@ -10,6 +10,8 @@
 </template>
 
 <style lang="scss">
+@import '@/css/variables.scss';
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -17,7 +19,7 @@
   text-align: center;
   color: #2c3e50;
   margin:auto;
-  max-width: 50vw;
+  max-width: 70vw;
   min-height: 100vh;
   display:flex;
   flex-direction:column;

@@ -1,6 +1,8 @@
 <template>
-  <main>
-    <section 
+  <sum-main v-if="sumIsActive"></sum-main>
+  <main v-else>
+    <section
+      
       v-for="(param, index) in params" 
       v-bind:key="param.id">
     <div class="left-box-pName">
@@ -19,16 +21,33 @@
       <a href="#" @click="newProp">
         +
       </a>
+      <!--<p>{{getSumArrays}}</p>-->
     </section>
+    
   </main>
+  
 </template>
 
 <script>
 import store from '@/store'
+import SumMain from '@/components/SumMain'
+
 
 export default {
   name: 'MainComponent',
+  components:  {
+    SumMain
+  },
+  data () {
+    return {
+      name:'Emil',
+      age:25
+    }
+  },
   computed: {
+    sumIsActive ()  {
+      return store.state.sumIsActive;
+    },
     tabs () {
       return store.state.tabs;
     },
@@ -37,30 +56,37 @@ export default {
     },
     activeTab () {
       return store.state.activeTab
-    }
+    },
+    getSums ()  {
+      return  this.$store.getters.getSums;
+    },  
+    getSumArrays ()  {
+      return  this.$store.getters.getSumArrays;
+    }  
   },
   methods: {
   newProp () {
     let word = prompt('Please enter prop name');
-      //let nextObjektNumber = (store.state.tabs.length + 1)
+      if ((word === "") || word == null){
+        return false
+      }else{
       let numberOfValuesItems = store.state.params[0].values.length;
       console.log('numberOfValuesItems: ',numberOfValuesItems);
       numberOfValuesItems++;
       console.log('numberOfValuesItems senare: ',numberOfValuesItems);
       let newValueArray = [];
-      for (let i = 0; i < numberOfValuesItems; i++) {
+      for (let i = 0; i < (numberOfValuesItems -1); i++) {
         newValueArray.push(50);
       }
-      console.log(newValueArray);
-
       let newObj = {
         text:word,
         values:newValueArray 
       }
-      store.state.params.forEach(element => {
-        element.values.push(50);
-      });
+      // store.state.params.forEach(element => {
+      //   element.values.push(50);
+      //});
       store.state.params.push(newObj)
+      }
   }
   }
 } 
@@ -71,15 +97,15 @@ export default {
 @import '@/css/variables.scss';
 
 main {
+  border:$border;
   margin-top: 100px;
   min-height: 80vh;
-  background-color:darkgray;
   display: flex;
   flex-direction:column;
   section {
     display: flex;
     height:100px;
-    border:$border;
+    border-bottom:$border;
     .left-box-pName {
       flex-basis: 20%;
       /*text-align: center;*/

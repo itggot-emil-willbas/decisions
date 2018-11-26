@@ -5,9 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    tabSums:[],
+    finalSums:[],
+    sumIsActive:false,
     vuexArray:[1,2,3],
     numberOfTabs:3,
-    activeTab:2,
+    activeTab:0,
     tabs:[
       {
         values:
@@ -56,5 +59,24 @@ export default new Vuex.Store({
   },
   actions: {
 
+  },
+  getters: {
+  getSums: state => {
+    let sumArray =  [];
+    state.params.forEach(param => {
+      param.values.forEach(value => {
+        sumArray.push(value);
+      });
+    });
+
+    return sumArray;
+  },
+  getSumArrays: state => {
+    let sumArrays = [];
+    state.params.forEach(param => {
+      sumArrays.push(param.values);
+    });
+    return sumArrays;
   }
-})
+}
+});

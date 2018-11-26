@@ -9,7 +9,7 @@
         @click="changeActiveTab"
         v-bind:id="('tab' + index)"
         >{{tab.values.text}}</a>
-      <a id="sum-tab" href="#">SUM</a>
+      <a id="sum-tab" href="#" @click="changeActiveTab">SUM</a>
     </nav>
     <main-component/>
   </div>
@@ -27,17 +27,27 @@ export default {
   },
   methods: {
     changeActiveTab(e) {
+      store.state.sumIsActive = false;
       console.log(e.target.id)
       let id = e.target.id;
+      if (id != "sum-tab"){
       store.state.activeTab = parseInt(id.slice(-1));
+      }
       let tabsToClear = document.querySelectorAll('#nav-tabs a');
       tabsToClear.forEach(element => {
         element.classList.remove('active')
       });
       e.target.classList.add('active')
+
+      if (id == "sum-tab"){
+      store.state.sumIsActive = true;
+      }
     },
     newTab(){
       let word = prompt('Please enter tab name');
+      if ((word === "") || word == null){
+        return false
+      }else{
       let nextObjektNumber = (store.state.tabs.length + 1)
       let newObj = {
         values:
@@ -47,6 +57,10 @@ export default {
           }
       }
       store.state.tabs.push(newObj)
+      store.state.params.forEach(element => {
+        element.values.push(50);
+      });
+      }
     }
   },
   computed: {
@@ -76,8 +90,8 @@ export default {
 nav#nav-tabs {
   position:fixed;
   top:0;
-  left:24.6vw;
-  width:50vw;
+  left:15vw;
+  width:70vw;
   height:100px;
   background:white;
   display: flex;
@@ -96,7 +110,7 @@ nav#nav-tabs {
       text-decoration:none;
       };
     a.active {
-      background-color:lightgreen;
+      background-color:$green;
     }
     a#new-tab{
       order:1000;
