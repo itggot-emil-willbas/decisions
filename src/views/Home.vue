@@ -28,7 +28,7 @@ export default {
   methods: {
     changeActiveTab(e) {
       store.state.sumIsActive = false;
-      console.log(e.target.id)
+      //console.log(e.target.id)
       let id = e.target.id;
       if (id != "sum-tab"){
       store.state.activeTab = parseInt(id.slice(-1));

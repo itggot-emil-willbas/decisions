@@ -20,6 +20,7 @@ export default {
   },
   methods: {
     showResults () {
+      this.$el.querySelector('#main-sum').innerHTML="";
       store.state.tabSums = [];
       store.state.finalSums = [];
       // 0. Tomma arrayer i tab sums
@@ -38,27 +39,52 @@ export default {
       //Summera
       store.state.tabSums.forEach(tabSum => {
         let tabSummer = tabSum.reduce((a, b) => a + b, 0);
-        console.log(tabSummer)
+        //console.log(tabSummer)
         store.state.finalSums.push(tabSummer)
       })
-      console.log("Summerade tabsums 3",store.state.finalSums)
+      //console.log("Summerade tabsums 3",store.state.finalSums)
       
       // 2. Skapa divar med höjd = sumValue i %
       store.state.tabs.forEach((tab,index) => {
         //let newDiv = document.createElement(`<div style="height:${store.state.finalSums[index]}px;">${tab.text}</div>`);
         let newDiv = document.createElement('div');
         newDiv.style.transition = '3s all linear';
-        newDiv.style.height = `${store.state.finalSums[index]}px`
+        newDiv.style.height = `0px`;
+        let columnHeight = store.state.finalSums[index];
+        newDiv.dataset.heightForAnimation = store.state.finalSums[index];
         let newDivSpan = document.createElement('span');
         newDivSpan.classList.add('span-text');
+        // 3. Lägg ut dem i main
         newDiv.appendChild(newDivSpan);
         let myText = document.createTextNode(tab.values.text);
         newDivSpan.appendChild(myText);
         let main = this.$el.querySelector('#main-sum');
+        let mainHeight = main.clientHeight;
+        console.log("Height är ",mainHeight)
         main.appendChild(newDiv);
+        // 4. Animation på stapel
+        let maxTotalParamSum = (store.state.params.length) * 100;
+        this.heightAnimatior(newDiv,columnHeight,mainHeight,maxTotalParamSum);
       })
-      // 3. Lägg ut dem i main
-    }
+      
+      
+    },
+    heightAnimatior (pointsColumn,columnHeight,mainHeight,maxTotalParamSum) {
+        console.log("max", maxTotalParamSum);
+        let elem = pointsColumn;
+        let heightCalulatedFromPercent = Math.floor((columnHeight/maxTotalParamSum) * mainHeight); 
+        let height = 0;
+        let id = setInterval(frame, 3);
+        function frame() {
+          if (height == heightCalulatedFromPercent) {
+              clearInterval(id);
+          } else {
+              height++; 
+              elem.style.height = height + 'px'; 
+          }
+        }
+      }
+
   }
 
 }
