@@ -19,7 +19,6 @@
   text-align: center;
   color: #2c3e50;
   margin:auto;
-  max-width: 70vw;
   min-height: 100vh;
   display:flex;
   flex-direction:column;
@@ -39,4 +38,16 @@ body{
   height: 10vh;
   background-color: rgba($color: #8bfbb6, $alpha: 1.0)
 }
+@media screen and (max-width:800px) {
+  #app {
+    width: 100vw;
+  }
+}
+@media screen and (min-width:801px) {
+  #app {
+    max-width: 70vw;
+  }
+}
+
+
 </style>
