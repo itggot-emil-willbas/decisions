@@ -11,7 +11,9 @@
 
 <style lang="scss">
 @import '@/css/variables.scss';
-
+body {
+  background-image:url("./assets/cheap_diagonal_fabric.png");
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,7 +24,8 @@
   min-height: 100vh;
   display:flex;
   flex-direction:column;
-}
+  background:white;
+  }
 body{
   margin:0;
 }
