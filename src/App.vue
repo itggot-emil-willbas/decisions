@@ -12,7 +12,7 @@
 <style lang="scss">
 @import '@/css/variables.scss';
 body {
-  background-image:url("./assets/cheap_diagonal_fabric.png");
+  /*background-image:url("./assets/cheap_diagonal_fabric.png");*/
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -28,6 +28,8 @@ body {
   }
 body{
   margin:0;
+  font-weight:bold;
+  
 }
 #nav {
   padding: 30px;
@@ -35,11 +37,11 @@ body{
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #42b983;
+      color: white;
     }
   }
   height: 10vh;
-  background-color: rgba($color: #8bfbb6, $alpha: 1.0)
+  background-color: rgba($color: $blue, $alpha: 1.0)
 }
 @media screen and (max-width:800px) {
   #app {

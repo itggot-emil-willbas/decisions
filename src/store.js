@@ -10,13 +10,14 @@ export default new Vuex.Store({
     sumIsActive:false,
     vuexArray:[1,2,3],
     numberOfTabs:3,
-    activeTab:0,
+    activeTab:1000,
     tabs:[
       {
         values:
           {
             id:0,
             text:'Första',
+            
           }
       },
       {
@@ -24,6 +25,7 @@ export default new Vuex.Store({
           {
             id:1,
             text:'Andra',
+            
           }
       },
       {
@@ -31,6 +33,7 @@ export default new Vuex.Store({
           {
             id:2,
             text:'Tredje',
+            
           }
       }
     ],

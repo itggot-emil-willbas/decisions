@@ -4,7 +4,8 @@
     <section
       
       v-for="(param, index) in params" 
-      v-bind:key="param.id">
+      v-bind:key="param.id"
+      v-bind:id="index">
     <div class="left-box-pName">
       <span>{{param.text}}:</span>
     </div>
@@ -14,7 +15,9 @@
         type="range" 
         v-bind:name="('range' + index)" 
         v-model="param.values[activeTab]">
+      
     </div>
+    <i class="delete-prop" @click="deleteProp">X</i>
 
     </section>
     <section id="add-prop">
@@ -23,7 +26,7 @@
       </a>
       <!--<p>{{getSumArrays}}</p>-->
     </section>
-    
+        
   </main>
   
 </template>
@@ -65,6 +68,17 @@ export default {
     }  
   },
   methods: {
+  deleteProp(e) {
+      //what id had the prop?
+      let paramId = parseInt(e.target.parentElement.id)
+      console.log("Target: ",typeof(paramId))
+
+      //let numberOfValuesItems = store.state.params[0].values.length;
+      //numberOfValuesItems --
+     
+      store.state.params.splice(paramId,1);
+      console.log(store.state.params)
+       },
   newProp () {
     let word = prompt('Please enter prop name');
       if ((word === "") || word == null){
@@ -82,13 +96,13 @@ export default {
         text:word,
         values:newValueArray 
       }
-      // store.state.params.forEach(element => {
-      //   element.values.push(50);
-      //});
+  
       store.state.params.push(newObj)
       }
   }
+  
   }
+  
 } 
 </script>
 
@@ -112,10 +126,12 @@ main {
       display: flex;
       span {
         margin:auto;
+        color:$gray;
+
       }
     }
     .right-box-pValue {
-      flex-basis: 80%;
+      flex-basis: 70%;
       text-align: center;
       display: flex;
       input {
@@ -124,6 +140,20 @@ main {
       }
       span {
         margin:auto;
+        color:$gray;
+      } 
+    }
+    i.delete-prop{
+      color:white;
+      background-color:pink;
+      flex-basis: 10%;
+      align-items:center;
+      justify-content: center;
+      display: flex;
+      font-size: 1.5em;
+      font-style: normal;
+      &:hover {
+        background-color:lightpink;
       }
     }
   }
@@ -138,6 +168,12 @@ main {
       align-items:center;
       justify-content: center;
       text-decoration:none;
+      font-size:1.7em;
+      color:$blue;
+      &:hover{
+        color:white;
+        background-color:$blue;
+      }
     }
   }  
 }

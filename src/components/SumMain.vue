@@ -104,7 +104,7 @@ export default {
   margin-top: 100px;
   min-height: 80vh;
   div {
-    background:$green;
+    background:$blue;
     color:white;
     display: flex;
     align-items: center;

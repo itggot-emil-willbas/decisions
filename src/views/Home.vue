@@ -2,6 +2,7 @@
   <div class="home">
     <nav id="nav-tabs">
       <a id="new-tab" href="#" @click="newTab">+</a>
+      <a id="delete-tab" href="#" @click="deleteTab">-</a>
       <a 
         v-for="(tab,index) in tabs" 
         v-bind:key="tab.id" 
@@ -27,6 +28,7 @@ export default {
   },
   methods: {
     changeActiveTab(e) {
+      
       store.state.sumIsActive = false;
       //console.log(e.target.id)
       let id = e.target.id;
@@ -38,10 +40,11 @@ export default {
         element.classList.remove('active')
       });
       e.target.classList.add('active')
-
+      console.log(e.target)
       if (id == "sum-tab"){
       store.state.sumIsActive = true;
       }
+      console.log('Nu är activeTab: ', store.state.activeTab);
     },
     newTab(){
       let word = prompt('Please enter tab name');
@@ -53,7 +56,8 @@ export default {
         values:
           {
             id:nextObjektNumber,
-            text:word
+            text:word,
+            deletable:false
           }
       }
       store.state.tabs.push(newObj)
@@ -61,7 +65,16 @@ export default {
         element.values.push(50);
       });
       }
-    }
+    },
+    deleteTab(){
+      console.log("deletar",store.state.activeTab);
+       store.state.tabs.splice(store.state.activeTab,1)
+      store.state.params.forEach(element => {
+        element.values.splice(store.state.activeTab,1);
+      });
+    
+     }
+    
   },
   computed: {
     vuexArray () {
@@ -97,6 +110,7 @@ nav#nav-tabs {
   display: flex;
   flex-direction: row-reverse;
     a {
+      
       display:block;
       flex:1;
       border-radius: 45px 15px 0px 0px;
@@ -108,12 +122,27 @@ nav#nav-tabs {
       border-top:$border;
       border-right:$border;
       text-decoration:none;
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      font-weight:bold;
+      color:$blue;
+      &:hover {
+        color:white;
+        background:$blue;
+      }
       };
     a.active {
-      background-color:$green;
+      background-color:$blue;
+      color:white;
     }
     a#new-tab{
       order:1000;
+    }
+    a#delete-tab{
+      order:999;
+    }
+    a#new-tab,a#delete-tab{
+      font-size:4em;
+      font-weight: 100;
     }
     a#sum-tab{
       order:-1;
